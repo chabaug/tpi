@@ -15,7 +15,8 @@ class Pelicula {
   bool es3DP() const;
   Lista<std::pair<Genero,Lista<Pelicula> > > agruparPelisPorGeneroP(Lista<Pelicula> ps) const;
   Lista<Pelicula> generarSagaDePeliculasP(Lista<Actor> as, Lista<Genero> gs, Lista<Nombre> nombres) const;
-  
+  bool esta(Genero g, Lista<Genero> gs);
+  Lista<Pelicula> pelisDelGenero(Lista<Pelicula> ps, Genero g);
 
 
   bool operator==(const Pelicula &otraPeli) const {
