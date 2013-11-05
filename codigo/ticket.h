@@ -14,10 +14,14 @@ class Ticket {
   Sala salaT() const;
   bool usadoT() const;
   void usarT();
-  Pelicula peliculaMenosVistaT(const Lista<Ticket> &ts) const;
+  Pelicula peliculaMenosVistaT(const Lista<Ticket> &ts) ;
   bool todosLosTicketsParaLaMismaSalaT(const Lista<Ticket> &ts) const;
   Lista<Ticket> cambiarSalaT(const Lista<Ticket> &ts, Sala vieja, Sala nueva) const;
-  Ticket ingresarASalaC(Sala s, const Ticket &t);
+  // ingresarASalaC esta en cine.cpp
+  //Ticket ingresarASalaC(Sala s, const Ticket &t);  
+  Lista<Ticket> filtrarUsados(const Lista<Ticket> &ts) ;
+  int cuentaPelis(Lista<Pelicula> &ps, Pelicula p);
+  Lista<Pelicula> peliculasT(const Lista<Ticket> &ts);
 
   bool operator==(const Ticket &otro) const {
     return pelicula_ == otro.pelicula_ && sala_ == otro.sala_ && usado_ == otro.usado_;
@@ -31,6 +35,7 @@ class Ticket {
   Pelicula pelicula_;
   Sala sala_;
   bool usado_;
+
 };
 
 std::ostream & operator<<(std::ostream & os,const Ticket & t);

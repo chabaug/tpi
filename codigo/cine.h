@@ -24,6 +24,7 @@ class Cine {
   string nombreC() const;
   Lista<Pelicula> peliculasC() const;
   Lista<Sala> salasC() const;
+  // Como hacer salaC?
   Sala salaC(const Nombre &p) const;
   int espectadoresC(Sala s) const;
   Lista<Ticket> ticketsVendidosSinUsarC() const;
