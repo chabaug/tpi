@@ -1,13 +1,5 @@
 #include "cine.h"
 
-Cine::Cine(Nombre n) {
-	nombre_ = n;
-	peliculas_ = Lista<pair<Pelicula,Sala> >();
-	espectadores_ = Lista<pair<Sala, int> >();
-	ticketsVendidos_ = Lista<Ticket>(); 
-	salasSinUsar_ = Lista<Sala>() ;
-}
-
 string Cine::nombreC() const {
 	return nombre_;
 }
@@ -20,9 +12,7 @@ Lista<Pelicula> Cine::peliculasC() const {
 		i++;
 	}
 	return res;
-}
-	  
-
+}  
 
 Lista<Sala> Cine::salasC() const {
 	Lista<Sala> res;
@@ -46,7 +36,6 @@ Sala Cine::salaC(const Nombre &p) const {
 	return res;
 }
 		
- 
 int Cine::espectadoresC(Sala s) const {
 	int res;
 	int i = 0;
@@ -70,22 +59,3 @@ void Cine::abrirSalaC(Sala s) {
 void Cine::agregarPeliculaC(const Pelicula &c, Sala s) {
 	peliculas_.agregarAtras(make_pair(c,s));
 }
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

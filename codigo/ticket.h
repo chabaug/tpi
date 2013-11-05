@@ -17,11 +17,14 @@ class Ticket {
   Pelicula peliculaMenosVistaT(const Lista<Ticket> &ts) ;
   bool todosLosTicketsParaLaMismaSalaT(const Lista<Ticket> &ts) const;
   Lista<Ticket> cambiarSalaT(const Lista<Ticket> &ts, Sala vieja, Sala nueva) const;
+
   // ingresarASalaC esta en cine.cpp
   //Ticket ingresarASalaC(Sala s, const Ticket &t);  
   Lista<Ticket> filtrarUsados(const Lista<Ticket> &ts) ;
   int cuentaPelis(Lista<Pelicula> &ps, Pelicula p);
   Lista<Pelicula> peliculasT(const Lista<Ticket> &ts);
+  // Como hacer ingresarASalaC, en la especificacion dice que entra un Cine
+  Ticket ingresarASalaC(Sala s, const Ticket &t);
 
   bool operator==(const Ticket &otro) const {
     return pelicula_ == otro.pelicula_ && sala_ == otro.sala_ && usado_ == otro.usado_;

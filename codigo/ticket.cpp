@@ -77,6 +77,7 @@ Lista<Pelicula> Ticket::peliculasT(const Lista<Ticket> &ts) {
 	return res;
 }
 
+
 bool Ticket::todosLosTicketsParaLaMismaSalaT(const Lista<Ticket> &ts) const {
 	bool res = true;
 	int i = 0;
