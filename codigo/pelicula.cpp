@@ -25,13 +25,13 @@ bool Pelicula::es3DP() const {
 }
 
 Lista<std::pair<Genero,Lista<Pelicula> > > Pelicula::agruparPelisPorGeneroP(Lista<Pelicula> ps) const {
-		Lista<std::pair<Genero,Lista<Pelicula> > > res;
-		res.agregar(make_pair(Aventura,pelisDelGenero(ps,Aventura)));
-		res.agregar(make_pair(Comedia,pelisDelGenero(ps,Comedia)));
-		res.agregar(make_pair(Drama,pelisDelGenero(ps,Drama)));
-		res.agregar(make_pair(Romantica,pelisDelGenero(ps,Romantica)));
-		res.agregar(make_pair(Terror,pelisDelGenero(ps,Terror)));
-		return res;
+	Lista<std::pair<Genero,Lista<Pelicula> > > res;
+	res.agregar(make_pair(Aventura,pelisDelGenero(ps,Aventura)));
+	res.agregar(make_pair(Comedia,pelisDelGenero(ps,Comedia)));
+	res.agregar(make_pair(Drama,pelisDelGenero(ps,Drama)));
+	res.agregar(make_pair(Romantica,pelisDelGenero(ps,Romantica)));
+	res.agregar(make_pair(Terror,pelisDelGenero(ps,Terror)));
+	return res;
 }	
 	
 Lista<Pelicula> Pelicula::pelisDelGenero(Lista<Pelicula> ps, Genero g) const {
@@ -69,7 +69,7 @@ Lista<Pelicula> Pelicula::generarSagaDePeliculasP(Lista<Actor> as, Lista<Genero>
 }
 
 void Pelicula::mostrar(std::ostream& os) const {
-os<< "P |" << this->nombreP() << "| [";
+	os<< "P |" << this->nombreP() << "| [";
 	int i = 0;
 	while (i < this->generosP().longitud()) {
 		os<< "|" << this->generosP().iesimo(i) << "|";
@@ -132,12 +132,32 @@ void Pelicula::cargar (std::istream& is) {
 	getline(is, nombre, '|');
 	is>> c;
 	Lista<Genero> generos;
-	Genero g;
+	string g;
 	while (c != ']') {
 		is>> c;
 		getline(is, g, '|');
 		is>> c;
-		generos.agregarAtras(g);
+		if (g == "Aventura") {
+			generos.agregarAtras(Aventura);
+		}
+		else {
+			if (g == "Comedia") {
+				generos.agregarAtras(Comedia);
+			}
+			else {
+				if (g == "Drama") {
+					generos.agregarAtras(Drama);
+				}
+				else {
+					if (g == "Romantica") {
+						generos.agregarAtras(Romantica);
+					}
+					else {
+						generos.agregarAtras(Terror);
+					}
+				}
+			}
+		}
 	}
 	is>> c;
 	Lista<Actor> actores;

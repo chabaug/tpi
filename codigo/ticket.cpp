@@ -89,25 +89,75 @@ bool Ticket::todosLosTicketsParaLaMismaSalaT(const Lista<Ticket> &ts) const {
 	}
 	return res;
 }
+// Pc: i == 0 && res == []
+// Qc: i == ts.longitud() &&
+// B: (i < ts.longitud());
 
 Lista<Ticket> Ticket::cambiarSalaT(const Lista<Ticket> &ts, Sala vieja, Sala nueva) const {
+	// modifica ts;
+	// estado a; 
+	// vale Pc;
 	Lista<Ticket> res;
-	int i = ts.longitud() - 1;
-	while (i >= 0) {
+	int i = 0;
+	while (i < ts.longitud()) {
+		// estado b;
+		// invariante I: 0 <= i <= ts.longitud();
+		// vale B && I;
 		if (ts.iesimo(i).salaT() == vieja) {
-			res.agregar(Ticket(ts.iesimo(i).peliculaT(), nueva, ts.iesimo(i).usadoT()));
+			// vale ts.iesimo(i).salaT() == vieja;
+			res.agregarAtras(Ticket(ts.iesimo(i).peliculaT(), nueva, ts.iesimo(i).usadoT()));
 		}
 		else {
 			res.agregar(ts.iesimo(i));
 		}
-		i = i - 1;
+		i++;
+		// vale I; vale i == i@b + 1; 
 	}
-	return  res;
+	// vale (I && ¬B); implica Qc
+	return res;
 }
 	
-	
-	
-	
+void Ticket::mostrar(std::ostream& os) const {
+	os<< "T (" << this->peliculaT().mostrar(os) << ") " << this->salaT() << " ";
+	if (this->usadoT()) {
+		os<< "V" << endl;
+	}
+	else {
+		os<< "F" << endl;
+	}
+}	
+
+void Ticket::guardar(std::ostream& os) const {
+	os<< "T (" << this->peliculaT().guardar(os) << ") " << this->salaT() << " ";
+	if (this->usadoT()) {
+		os<< "V" << endl;
+	}
+	else {
+		os<< "F" << endl;
+	}
+}
+
+void Ticket::cargar (std::istream& is) {
+	char c;
+	is>> c;
+	is>> c;
+	Pelicula p;
+	p.cargar(is);
+	is>> c;
+	int s;
+	is>> s;
+	bool b;
+	is>> c;
+	if (c == 'V') {
+		b = true;
+	}
+	else {
+		b = false;
+	}
+	pelicula_ = p;
+	sala_ = s;
+	usado_ = b;
+}
 	
 	
 	

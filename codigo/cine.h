@@ -24,7 +24,6 @@ class Cine {
   string nombreC() const;
   Lista<Pelicula> peliculasC() const;
   Lista<Sala> salasC() const;
-  // Como hacer salaC?
   Sala salaC(const Nombre &p) const;
   int espectadoresC(Sala s) const;
   Lista<Ticket> ticketsVendidosSinUsarC() const;
@@ -38,6 +37,9 @@ class Cine {
   Ticket venderTicketC(const Nombre &p);
   Ticket ingresarASalaC(Sala s, const Ticket &t);
   Pelicula pasarA3DUnaPeliculaC(Nombre n);
+  Pelicula hacer3D(Pelicula p);
+  Lista<Ticket> ticketsVendidosSinUsarParaLaSala(Sala s);
+
 
   void mostrar(std::ostream& os) const;
   void guardar(std::ostream& os) const;
