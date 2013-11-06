@@ -188,7 +188,9 @@ void Cine::mostrar(std::ostream& os) const {
 	os<< "] [";
 	i = 0;
 	while (i < this->peliculasC().longitud()) {
-		os<< "(" << this->salaC(this->peliculasC().iesimo(i).nombreP()) << ", " << this->peliculasC().iesimo(i).guardar(os) << ")";
+		os<< "(" << this->salaC(this->peliculasC().iesimo(i).nombreP()) << ", ";
+		this->peliculasC().iesimo(i).mostrar(os);
+		os<< ")";
 		if (i != this->peliculasC().longitud() - 1) {
 		os<< ", ";
 		}
@@ -225,7 +227,9 @@ void Cine::guardar(std::ostream& os) const {
 	os<< "] [";
 	i = 0;
 	while (i < this->peliculasC().longitud()) {
-		os<< "(" << this->salaC(this->peliculasC().iesimo(i).nombreP()) << ", " << this->peliculasC().iesimo(i).guardar(os) << ")";
+		os<< "(" << this->salaC(this->peliculasC().iesimo(i).nombreP()) << ", ";
+		os<< this->peliculasC().iesimo(i).guardar(os);
+		os<< ")";
 		if (i != this->peliculasC().longitud() - 1) {
 		os<< ", ";
 		}
@@ -305,17 +309,3 @@ void Cine::cargar (std::istream& is) {
 	ticketsVendidos_ = ticketsVendidos;
 	peliculas_ = peliculas;
 }
-		
-		
-	
-	
-		
-		
-	 
-	
-	
-/*
-void Cine::agregarPeliculaC(const Pelicula &c, Sala s) {
-	peliculas_.agregarAtras(make_pair(c,s));
-}
-*/
