@@ -79,6 +79,7 @@ void Cine::cerrarSalaC(Sala s) {
 	while (i < peliculas_.longitud()) {
 		if (s == peliculas_.iesimo(i).second) {
 			peliculas_.sacar(peliculas_.iesimo(i));
+			i = i - 1;
 		}
 		i++;
 	}
@@ -129,15 +130,17 @@ Ticket Cine::venderTicketC(const Nombre &p) {
 }
 
 Ticket Cine::ingresarASalaC(Sala s, const Ticket &t) {
+	Ticket res = t;
 	int i = 0;
 	while (i < espectadores_.longitud()) {
 		if (s == espectadores_.iesimo(i).first) {
-			espectadores_.iesimo(i).second = espectadores_.iesimo(i).second + 1;
+			espectadores_.iesimo(i).second++;
 		}
 		i++;
 	}
-	ticketsVendidos_ = ticketsVendidos_.sacar(t);
-	return t.usarT();
+	ticketsVendidos_.sacar(t);
+	res.usarT();
+	return res;
 }
 
 Pelicula Cine::pasarA3DUnaPeliculaC(Nombre n)	{
@@ -145,8 +148,8 @@ Pelicula Cine::pasarA3DUnaPeliculaC(Nombre n)	{
 	int i = 0;
 	while (i < peliculas_.longitud()) {
 		if (n == peliculas_.iesimo(i).first.nombreP()) {
-			res = peliculas_.iesimo(i).first.hacer3D();
-			peliculas_.iesimo(i).first = peliculas_.iesimo(i).first.hacer3D();
+			res = hacer3D(peliculas_.iesimo(i).first);
+			peliculas_.iesimo(i).first = hacer3D(peliculas_.iesimo(i).first);
 		}
 		i++;
 	}
