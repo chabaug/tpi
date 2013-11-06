@@ -24,46 +24,94 @@ bool Pelicula::es3DP() const {
 	return es3D_;
 }
 
-Lista<std::pair<Genero,Lista<Pelicula> > > Pelicula::agruparPelisPorGeneroP(Lista<Pelicula> ps) const {
-	Lista<std::pair<Genero,Lista<Pelicula> > > res;
-	res.agregar(make_pair(Aventura,pelisDelGenero(ps,Aventura)));
-	res.agregar(make_pair(Comedia,pelisDelGenero(ps,Comedia)));
-	res.agregar(make_pair(Drama,pelisDelGenero(ps,Drama)));
-	res.agregar(make_pair(Romantica,pelisDelGenero(ps,Romantica)));
-	res.agregar(make_pair(Terror,pelisDelGenero(ps,Terror)));
-	return res;
-}	
-	
-Lista<Pelicula> Pelicula::pelisDelGenero(Lista<Pelicula> ps, Genero g) const {
-	Lista<Pelicula> res;
-	int i = 0;
-	while (i < ps.longitud()){
-		if (esta (g, ps.iesimo(i).generosP())) {
-			res.agregar(ps.iesimo(i));
-		}
-		i++;
-	}
-	return res;
+//~ Lista<std::pair<Genero,Lista<Pelicula> > > Pelicula::agruparPelisPorGeneroP(Lista<Pelicula> ps) const {
+	//~ Lista<std::pair<Genero,Lista<Pelicula> > > res;
+	//~ res.agregar(make_pair(Aventura,pelisDelGenero(ps,Aventura)));
+	//~ res.agregar(make_pair(Comedia,pelisDelGenero(ps,Comedia)));
+	//~ res.agregar(make_pair(Drama,pelisDelGenero(ps,Drama)));
+	//~ res.agregar(make_pair(Romantica,pelisDelGenero(ps,Romantica)));
+	//~ res.agregar(make_pair(Terror,pelisDelGenero(ps,Terror)));
+	//~ return res;
+//~ }	
+	//~ 
+//~ Lista<Pelicula> Pelicula::pelisDelGenero(Lista<Pelicula> ps, Genero g) const {
+	//~ Lista<Pelicula> res;
+	//~ int i = 0;
+	//~ while (i < ps.longitud()){
+		//~ if (esta (g, ps.iesimo(i).generosP())) {
+			//~ res.agregar(ps.iesimo(i));
+		//~ }
+		//~ i++;
+	//~ }
+	//~ return res;
+//~ }
+//~ 
+//~ bool Pelicula::esta(Genero g, Lista<Genero> gs) const {
+	//~ int i = 0;
+	//~ bool encontre = false;
+	//~ while (!encontre && i < gs.longitud()) {
+		//~ if (g == gs.iesimo(i)) {
+			//~ encontre = true;
+		//~ }
+		//~ i++;
+	//~ }
+	//~ return encontre;
+//~ }
+
+Lista<std::pair<Genero, Lista<Pelicula> > > Pelicula::agruparPelisPorGeneroP(Lista<Pelicula> ps) const{
+    Lista<Pelicula> lAventura;
+    Lista<Pelicula> lComedia;
+    Lista<Pelicula> lDrama;
+    Lista<Pelicula> lRomantica;
+    Lista<Pelicula> lTerror;
+
+    int i = 0;
+    while (i < ps.longitud()){
+        Pelicula p = ps.iesimo(i);
+        int j = 0;
+        while (j < p.generosP().longitud()){
+            Genero g = p.generosP().iesimo(j);
+            switch (g){
+                case Aventura:
+                    lAventura.agregarAtras(p);
+                    break;
+                case Comedia:
+                    lComedia.agregarAtras(p);
+                    break;
+                case Drama:
+                    lDrama.agregarAtras(p);
+                    break;
+                case Romantica:
+                    lRomantica.agregarAtras(p);
+                    break;
+                case Terror:
+                    lTerror.agregarAtras(p);
+                    break;
+            }
+        }
+    }
+
+    Lista<std::pair<Genero, Lista<Pelicula> > > ret;
+    if (lAventura.longitud() > 0)
+		ret.agregarAtras(std::make_pair(Aventura, lAventura));
+    if (lComedia.longitud() > 0)
+		ret.agregarAtras(std::make_pair(Comedia, lComedia));	
+    if (lDrama.longitud() > 0)
+		ret.agregarAtras(std::make_pair(Drama, lDrama));
+    if (lRomantica.longitud() > 0)
+		ret.agregarAtras(std::make_pair(Romantica, lRomantica));
+    if (lTerror.longitud() > 0)
+		ret.agregarAtras(std::make_pair(Terror, lTerror));
+    return ret;
 }
 
-bool Pelicula::esta(Genero g, Lista<Genero> gs) const {
-	int i = 0;
-	bool encontre = false;
-	while (!encontre && i < gs.longitud()) {
-		if (g == gs.iesimo(i)) {
-			encontre = true;
-		}
-		i++;
-	}
-	return encontre;
-}
 
 Lista<Pelicula> Pelicula::generarSagaDePeliculasP(Lista<Actor> as, Lista<Genero> gs, Lista<Nombre> nombres) const {
 	Lista<Pelicula> res;
 	int i = 0;
 	while (i < nombres.longitud()) {
-		res.agregar(Pelicula(nombres.iesimo(i), gs, as, false));
 		i++;
+		res.agregarAtras(Pelicula(nombres.iesimo(i), gs, as, false));
 	}
 	return res;
 }

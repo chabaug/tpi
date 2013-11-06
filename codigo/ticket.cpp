@@ -26,14 +26,14 @@ Pelicula Ticket::peliculaMenosVistaT(const Lista<Ticket> &ts)  {
 	Lista<Pelicula> vistas = peliculasT(filtrarUsados(ts));
 	Lista<int> cuentas;
 	int i = 0;
-	while (i < ts.longitud()) {
+	while (i < filtrarUsados(ts).longitud()) {
 		cuentas.agregarAtras(cuentaPelis(vistas, vistas.iesimo(i)));
 		i++;
 	}
 	i = 1;
 	int min = cuentas.cabeza();
 	int indice = 1;
-	while (i < ts.longitud()) {
+	while (i < filtrarUsados(ts).longitud()) {
 		if (cuentas.iesimo(i) < min) {
 			min = cuentas.iesimo(i);
 			indice = i;
@@ -71,7 +71,7 @@ Lista<Pelicula> Ticket::peliculasT(const Lista<Ticket> &ts) {
 	Lista<Pelicula> res;
 	int i = 0;
 	while (i < ts.longitud()) {
-		res.agregar(ts.iesimo(i).peliculaT());
+		res.agregarAtras(ts.iesimo(i).peliculaT());
 		i++;
 	}
 	return res;
@@ -80,15 +80,14 @@ Lista<Pelicula> Ticket::peliculasT(const Lista<Ticket> &ts) {
 
 bool Ticket::todosLosTicketsParaLaMismaSalaT(const Lista<Ticket> &ts) const {
 	bool res = true;
-	int i = 0;
+	int i = 1;
 	while (res && i < ts.longitud()) {
-		if (ts.cabeza().salaT() != ts.iesimo(i).salaT()) {
-			res = false;
-		}
+		res = (ts.cabeza().salaT() == ts.iesimo(i).salaT());
 		i++;
 	}
 	return res;
 }
+
 // Pc: i == 0 && res == []
 // Qc: i == ts.longitud() &&
 // B: (i < ts.longitud());
@@ -108,7 +107,7 @@ Lista<Ticket> Ticket::cambiarSalaT(const Lista<Ticket> &ts, Sala vieja, Sala nue
 			res.agregarAtras(Ticket(ts.iesimo(i).peliculaT(), nueva, ts.iesimo(i).usadoT()));
 		}
 		else {
-			res.agregar(ts.iesimo(i));
+			res.agregarAtras(ts.iesimo(i));
 		}
 		i++;
 		// vale I; vale i == i@b + 1; 

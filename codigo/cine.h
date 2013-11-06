@@ -32,14 +32,16 @@ class Cine {
   void agregarPeliculaC(const Pelicula &c, Sala s);
   void cerrarSalaC(Sala s);
   void cerrarSalasC(int e);
-  void cerrarSalasDeLaCadenaC(Lista<Cine> &cs, int e) const;
+  //~ void cerrarSalasDeLaCadenaC(Lista<Cine> &cs, int e) const;
   Pelicula peliculaC(Sala s) const;
   Ticket venderTicketC(const Nombre &p);
   Ticket ingresarASalaC(Sala s, const Ticket &t);
   Pelicula pasarA3DUnaPeliculaC(Nombre n);
   Pelicula hacer3D(Pelicula p);
-  Lista<Ticket> ticketsVendidosSinUsarParaLaSala(Sala s);
-
+  Lista<Ticket> ticketsVendidosSinUsarParaLaSala(Sala s) const;
+  Lista<Sala> salasSinUsar(Lista<Sala> s) const;
+  Lista<Sala> salasUsadas(Lista<Sala> s) const;
+  bool tienePelicula(Sala s) const;
 
   void mostrar(std::ostream& os) const;
   void guardar(std::ostream& os) const;

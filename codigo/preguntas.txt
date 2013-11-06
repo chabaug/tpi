@@ -1,0 +1,12 @@
+*
+1) Aux se declaran en privado o publico?
+
+Pelicula.cpp
+1) Switch, case, break, estan permitidas.
+2) NuevaP debe estar declarada?
+
+Ticket.cpp
+1) Para reemplazar la sala vieja/nueva, se puede crear un nuevo ticket?
+
+Cine.cpp
+1) ln 98 pasar ‘const Cine’ como el argumento ‘this’ de ‘void Cine::cerrarSalasC(int)’ descarta a los calificadores [-fpermissive]
