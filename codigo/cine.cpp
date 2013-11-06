@@ -221,7 +221,7 @@ void Cine::guardar(std::ostream& os) const {
 	os<< "] [";
 	i = 0;
 	while (i < this->salasC().longitud()) {
-		os<< "(" << this->salasC().iesimo(i) << ", " << this->ticketsVendidosSinUsarParaLaSala(this->salasC().iesimo(i)) << ")";
+		os<< "(" << this->salasC().iesimo(i) << ", " << this->ticketsVendidosSinUsarParaLaSala(this->salasC().iesimo(i)).longitud() << ")";
 		if (i != this->salasC().longitud() - 1) {
 			os<< ", ";
 		}
@@ -231,7 +231,7 @@ void Cine::guardar(std::ostream& os) const {
 	i = 0;
 	while (i < this->peliculasC().longitud()) {
 		os<< "(" << this->salaC(this->peliculasC().iesimo(i).nombreP()) << ", ";
-		os<< this->peliculasC().iesimo(i).guardar(os);
+		this->peliculasC().iesimo(i).guardar(os);
 		os<< ")";
 		if (i != this->peliculasC().longitud() - 1) {
 		os<< ", ";
