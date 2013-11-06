@@ -118,7 +118,9 @@ Lista<Ticket> Ticket::cambiarSalaT(const Lista<Ticket> &ts, Sala vieja, Sala nue
 }
 	
 void Ticket::mostrar(std::ostream& os) const {
-	os<< "T (" << this->peliculaT().mostrar(os) << ") " << this->salaT() << " ";
+	os<< "T (" ;
+	this->peliculaT().mostrar(os);
+	os<< ") " << this->salaT() << " ";
 	if (this->usadoT()) {
 		os<< "V" << endl;
 	}
@@ -128,7 +130,9 @@ void Ticket::mostrar(std::ostream& os) const {
 }	
 
 void Ticket::guardar(std::ostream& os) const {
-	os<< "T (" << this->peliculaT().guardar(os) << ") " << this->salaT() << " ";
+	os<< "T (";
+	this->peliculaT().guardar(os);
+	os<< ") " << this->salaT() << " ";
 	if (this->usadoT()) {
 		os<< "V" << endl;
 	}

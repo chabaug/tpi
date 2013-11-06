@@ -55,7 +55,6 @@ Lista<Ticket> Cine::ticketsVendidosSinUsarC() const {
 void Cine::abrirSalaC(Sala s) {
 	salasSinUsar_.agregarAtras(s);
 }
-<<<<<<< HEAD
 
 void Cine::agregarPeliculaC(const Pelicula &c, Sala s) {
 	peliculas_.agregarAtras(make_pair(c,s));
@@ -79,7 +78,7 @@ void Cine::cerrarSalaC(Sala s) {
 	i = 0;
 	while (i < peliculas_.longitud()) {
 		if (s == peliculas_.iesimo(i).second) {
-			peliculas_.sacar(peliculas_iesimo(i));
+			peliculas_.sacar(peliculas_.iesimo(i));
 		}
 		i++;
 	}
@@ -315,9 +314,8 @@ void Cine::cargar (std::istream& is) {
 	 
 	
 	
-=======
-
+/*
 void Cine::agregarPeliculaC(const Pelicula &c, Sala s) {
 	peliculas_.agregarAtras(make_pair(c,s));
 }
->>>>>>> 294084784f4026ec79b6145a623843c0ac84b4f6
+*/
